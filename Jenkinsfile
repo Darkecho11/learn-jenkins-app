@@ -33,7 +33,7 @@ pipeline{
 
             }
         }
-        stage
+        
     }
     post{
         always{
