@@ -62,7 +62,7 @@ pipeline {
                     steps {
                         sh '''
                             serve -s build &
-                            sleep 10
+                            sleep 15
                             npx playwright test  --reporter=html
                         '''
                     }
