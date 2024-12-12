@@ -94,14 +94,14 @@ pipeline {
                 '''
             }
         }
-        stage('Approval'){
+/*        stage('Approval'){
             steps{
                 timeout(time: 1, unit: 'HOURS') {
                     input message: 'Do you want to deploy to production environment?', ok: 'YESYESYESYES'
                 }
             }
         }
-        stage('Deploy prod') {
+*/        stage('Deploy prod') {
             agent {
                 docker {
                     image 'node:18-alpine'
