@@ -63,6 +63,7 @@ pipeline {
                         sh '''
                             serve -s build &
                             sleep 15
+                            echo "HOLO"
                             npx playwright test  --reporter=html
                         '''
                     }
