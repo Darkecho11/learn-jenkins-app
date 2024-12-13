@@ -40,7 +40,7 @@ pipeline {
                         yum install jq -y
                         aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision'
                         echo "HOLAAAAAAA"
-                        LATEST_TD_REVISION = $(aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision') 
+                        LATEST_TD_REVISION=$(aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision') 
                         
                         echo "ONDE PA"?
                         aws ecs update-service --service LearnJenkinsApp-Service-Prod --task-definition LearnJenkinsApp-TaskDefinition-Prod:$LATEST_TD_REVISION --cluster LearnJenkinsApp-Cluster-Prod
