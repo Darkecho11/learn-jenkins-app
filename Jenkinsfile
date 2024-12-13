@@ -44,7 +44,7 @@ pipeline {
                         
                         echo "ONDE PA"?
                         aws ecs update-service --service LearnJenkinsApp-Service-Prod --task-definition LearnJenkinsApp-TaskDefinition-Prod:$LATEST_TD_REVISION --cluster LearnJenkinsApp-Cluster-Prod
-                        aws ecs wait services-stable --cluster LearnJenkinsApp-Service-Prod --service LearnJenkinsApp-Cluster-Prod
+                        aws ecs wait services-stable --cluster LearnJenkinsApp-Cluster-Prod --service LearnJenkinsApp-Service-Prod
                     '''
                 }
                 sh '''
