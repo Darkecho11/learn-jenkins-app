@@ -4,7 +4,7 @@ pipeline {
     environment {
         AWS_DEFAULT_REGION='us-east-1'
         AWS_ECS_CLUSTER = 'LearnJenkinsApp-Cluster-Prod'
-        AWS_DOCKER_REGISTRY= '992382438008.dkr.ecr.us-east-1.amazonaws.com'
+        AWS_DOCKER_REGISTRY= '637423492232.dkr.ecr.us-east-1.amazonaws.com'
         AWS_ECS_SERVICE_PROD = 'LearnJenkinsApp-Service-Prod'
         AWS_ECS_TD_PROD = 'LearnJenkinsApp-TaskDefinition-Prod'
         APP_NAME = 'learnjenkinsapp'
@@ -62,6 +62,7 @@ pipeline {
                     sh '''
                         aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision'
                         echo "HOLAAAAAAA"
+                        sed -i "s/#APP_VERSION#/$BUILD_ID/g"
                         LATEST_TD_REVISION=$(aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision') 
                         
                         echo "ONDE PA"?
