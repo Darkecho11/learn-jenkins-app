@@ -39,6 +39,7 @@ pipeline {
             steps{
                 sh '''
                 amazon-linux-extras install docker
+                ls
                 docker build -t myjenkinsapp .
                 
                 '''
