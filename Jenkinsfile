@@ -39,6 +39,7 @@ pipeline {
                         aws --version
                         yum install jq -y
                         aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision'
+                        echo "HOLAAAAAAA"
                         LATEST_TD_REVISION = $(aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision') 
                         
                         echo "ONDE PA"?
