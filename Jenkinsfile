@@ -62,7 +62,7 @@ pipeline {
                     sh '''
                         aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision'
                         echo "HOLAAAAAAA"
-                        sed -i "s/#APP_VERSION#/$BUILD_ID/g"
+                        sed -i "s/#APP_VERSION#/$BUILD_ID/g" aws/task-definition-prod.json
                         LATEST_TD_REVISION=$(aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision') 
                         
                         echo "ONDE PA"?
