@@ -6,6 +6,7 @@ pipeline {
         AWS_ECS_CLUSTER = 'LearnJenkinsApp-Cluster-Prod'
         AWS_ECS_SERVICE_PROD = 'LearnJenkinsApp-Service-Prod'
         AWS_ECS_TD_PROD = 'LearnJenkinsApp-TaskDefinition-Prod'
+        APP_NAME = 'LearnJenkins'
     }
 
     stages {
@@ -38,7 +39,7 @@ pipeline {
             }
             steps{
                 sh '''
-                docker build -f ci/Dockerfile -t myjenkinsapp .
+                docker build -f ci/Dockerfile -t $APP_NAME:0.$BUILD_ID .
                 
                 '''
             }
