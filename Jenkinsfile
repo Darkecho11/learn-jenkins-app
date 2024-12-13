@@ -7,6 +7,25 @@ pipeline {
     }
 
     stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    ls -la
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
+                    ls -la
+                '''
+            }
+        }
+
         stage('AWS'){
             agent{
                 docker{
@@ -23,30 +42,11 @@ pipeline {
                         aws --version
                         aws s3 ls
                         echo "Hello S3" > index.html
-                        aws s3 cp index.html s3://$AWS_S3_BUCKET/index.html
+                        aws s3 sync . s3://$AWS_S3_BUCKET
                     '''
                 }
                 sh '''
                     aws --version
-                '''
-            }
-        }
-
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                    ls -la
-                    node --version
-                    npm --version
-                    npm ci
-                    npm run build
-                    ls -la
                 '''
             }
         }
